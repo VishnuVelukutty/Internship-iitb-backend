@@ -1,18 +1,16 @@
 package dev.vishnu.project.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import dev.vishnu.project.Model.CoursesModel;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -22,7 +20,7 @@ public class CoursesRepository {
 	private EntityManager entityManager;
 
 	@Transactional
-	public void saveCoursesDao(CoursesModel courses) {
+	public void addCoursesDao(CoursesModel courses) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		currentSession.persist(courses);
 	}
@@ -34,33 +32,26 @@ public class CoursesRepository {
 		return list;
 	}
 
-	public CoursesModel getCoursesByIdDao(String courseId) {
+	@Transactional
+	public CoursesModel getCoursesByIdDao(int courseId) {
 		Session currentSession = entityManager.unwrap(Session.class);
+		Query<CoursesModel> query = currentSession.createQuery("FROM CoursesModel WHERE courseId = :courseId",
+				CoursesModel.class);
+		query.setParameter("courseId", courseId);
 		CoursesModel course = currentSession.get(CoursesModel.class, courseId);
 		return course;
 	}
 
-	public void deleteByIdDao(String courseId) {
+	@Transactional
+	public void deleteByIdDao(int courseId) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		CoursesModel course = currentSession.get(CoursesModel.class, courseId);
-		currentSession.remove(course);
+
+		if (course != null) {
+			currentSession.remove(course);
+		} else {
+			throw new EntityNotFoundException("Course not found with ID: " + courseId);
+		}
 	}
 
 }
-
-/*
- * POST /api/courses
- * Create a new course
- * 2.
- * GET /api/courses
- * a.
- * list of all courses available
- * 3.
- * GET /api/courses/23
- * a.
- * View detailed information about a course with ID = 23:
- * 4.
- * DELETE /api/courses/24
- * a.
- * delete a course with ID = 24
- */
