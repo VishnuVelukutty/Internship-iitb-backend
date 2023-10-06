@@ -25,7 +25,7 @@ public class CoursesController {
 	public ResponseEntity<?> addCourse(@RequestBody String requestData) {
 		JSONObject requestJson = new JSONObject(requestData);
 		JSONObject responseJson = coursesService.addCoursesSrv(requestJson);
-		return new ResponseEntity<>(responseJson.toString(), HttpStatus.OK);
+		return new ResponseEntity<String>(responseJson.toString(), HttpStatus.OK);
 	}
 
 	@GetMapping({ "/courses" })

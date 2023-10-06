@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public class InstanceRepository {
-	
+
 	@Autowired
 	private EntityManager entityManager;
 
@@ -32,25 +32,26 @@ public class InstanceRepository {
 
 	public InstanceModel getYearSemIdDao(int year, int sem, int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-			Query<InstanceModel> query = currentSession.createQuery("FROM InstanceModel WHERE year = :year AND semester = :sem AND id = :id", InstanceModel.class);
-			query.setParameter("year", year);
-			query.setParameter("sem", sem);
-			query.setParameter("id", id);
-			return query.uniqueResult();
-			}
+		Query<InstanceModel> query = currentSession.createQuery(
+				"FROM InstanceModel WHERE year = :year AND semester = :sem AND id = :id", InstanceModel.class);
+		query.setParameter("year", year);
+		query.setParameter("sem", sem);
+		query.setParameter("id", id);
+		return query.uniqueResult();
+	}
 
 	public void deleteYearSemIdDao(int year, int sem, int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-    Query<InstanceModel> query = currentSession.createQuery("FROM InstanceModel WHERE year = :year AND semester = :sem AND id = :id", InstanceModel.class);
-    query.setParameter("year", year);
-    query.setParameter("sem", sem);
-    query.setParameter("id", id);
-    InstanceModel course = query.uniqueResult();
-    
-    if (course != null) {
-        currentSession.remove(course);
-    }
+		Query<InstanceModel> query = currentSession.createQuery(
+				"DELETE FROM InstanceModel WHERE year = :year AND semester = :sem AND id = :id", InstanceModel.class);
+		query.setParameter("year", year);
+		query.setParameter("sem", sem);
+		query.setParameter("id", id);
+		InstanceModel course = query.uniqueResult();
+
+		if (course != null) {
+			currentSession.remove(course);
+		}
 	}
-	
-    
+
 }

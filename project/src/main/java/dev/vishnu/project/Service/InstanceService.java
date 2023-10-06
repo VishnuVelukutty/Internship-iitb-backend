@@ -20,7 +20,6 @@ public class InstanceService {
 
 	public JSONObject addInstanceSrv(JSONObject requestData) {
 
-		String courseName = requestData.getString("courseName");
 		int year = requestData.getInt("year");
 		int sem = requestData.getInt("sem");
 
