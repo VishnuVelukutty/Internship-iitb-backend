@@ -3,6 +3,7 @@ package dev.vishnu.project.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,12 +40,23 @@ public class CoursesService {
 
 	}
 
-	public JSONObject getCoursesSrv(JSONObject requestData) {
+	public JSONObject getCoursesSrv() {
 		List<CoursesModel> courseDetails = new ArrayList<CoursesModel>();
 
 		try {
 			courseDetails = coursesRepository.getCoursesDao();
-			responseJson.put("List", courseDetails);
+
+			JSONArray courseArray = new JSONArray();
+
+			for (CoursesModel course : courseDetails) {
+                JSONObject courseJson = new JSONObject();
+                courseJson.put("courseTitle", course.getCourseTitle());
+                courseJson.put("courseCode", course.getCourseCode());
+                courseJson.put("courseDesc", course.getCourseDesc());
+                courseArray.put(courseJson);
+            }
+
+			responseJson.put("Data", courseArray);
 		} catch (Exception e) {
 			responseJson.putOpt("Error", e);
 		}

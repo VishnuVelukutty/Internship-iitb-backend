@@ -29,9 +29,9 @@ public class CoursesController {
 	}
 
 	@GetMapping({ "/courses" })
-	public ResponseEntity<?> getCourses(@RequestBody String requestData) {
-		JSONObject requestJson = new JSONObject(requestData);
-		JSONObject responseJson = coursesService.getCoursesSrv(requestJson);
+	public ResponseEntity<?> getCourses() {
+		// JSONObject requestJson = new JSONObject(requestData);
+		JSONObject responseJson = coursesService.getCoursesSrv();
 		return new ResponseEntity<>(responseJson.toString(), HttpStatus.OK);
 	}
 
