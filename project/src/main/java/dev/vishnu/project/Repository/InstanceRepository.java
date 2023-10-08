@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import dev.vishnu.project.Model.CoursesModel;
 import dev.vishnu.project.Model.InstanceModel;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -52,6 +53,13 @@ public class InstanceRepository {
 		if (course != null) {
 			currentSession.remove(course);
 		}
+	}
+
+	public List<InstanceModel> getInstancesDao() {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query<InstanceModel> query = currentSession.createQuery("from InstanceModel", InstanceModel.class);
+		List<InstanceModel> list = query.getResultList();
+		return list;
 	}
 
 }

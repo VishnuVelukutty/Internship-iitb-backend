@@ -53,6 +53,7 @@ public class CoursesService {
                 courseJson.put("courseTitle", course.getCourseTitle());
                 courseJson.put("courseCode", course.getCourseCode());
                 courseJson.put("courseDesc", course.getCourseDesc());
+				courseJson.put("courseId", course.getCourseId());
                 courseArray.put(courseJson);
             }
 

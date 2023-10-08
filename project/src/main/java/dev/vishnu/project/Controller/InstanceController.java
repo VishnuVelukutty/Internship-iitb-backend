@@ -28,6 +28,13 @@ public class InstanceController {
 	        return new ResponseEntity<>(responseJson.toString(),HttpStatus.OK);
 	    }
 
+		@GetMapping({"/instances"})
+		public ResponseEntity<?> getCourseCntrl() {
+	        JSONObject responseJson = instanceService.getInstanceSrv();
+			System.out.println(">>>>>"+responseJson);
+	        return new ResponseEntity<>(responseJson.toString(),HttpStatus.OK);
+	    } 
+
 	    @GetMapping({"/instances/{year}/{sem}"})
 	    public ResponseEntity<?> getCourses(@PathVariable int year,int sem) {
 			JSONObject requestData = new JSONObject();
