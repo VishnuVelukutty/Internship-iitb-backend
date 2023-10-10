@@ -82,9 +82,7 @@ public class CoursesService {
 			courseJson.put("courseCode", courseDetails.getCourseCode());
 			courseJson.put("courseTitle", courseDetails.getCourseTitle());
 			courseJson.put("courseDesc", courseDetails.getCourseDesc());
-			responseJson.put("Details for ID", courseJson);
-
-			// responseJson.put("Details for ID", courseDetails);
+			responseJson.put("Data", courseJson);
 		} catch (Exception e) {
 			responseJson.putOpt("Error", e);
 		}

@@ -31,12 +31,11 @@ public class InstanceController {
 		@GetMapping({"/instances"})
 		public ResponseEntity<?> getCourseCntrl() {
 	        JSONObject responseJson = instanceService.getInstanceSrv();
-			System.out.println(">>>>>"+responseJson);
 	        return new ResponseEntity<>(responseJson.toString(),HttpStatus.OK);
 	    } 
 
 	    @GetMapping({"/instances/{year}/{sem}"})
-	    public ResponseEntity<?> getCourses(@PathVariable int year,int sem) {
+	    public ResponseEntity<?> getCourses(@PathVariable int year,@PathVariable int sem) {
 			JSONObject requestData = new JSONObject();
 			requestData.put("year", year);
 			requestData.put("sem", sem);
@@ -46,7 +45,7 @@ public class InstanceController {
 
 
 	    @GetMapping({"/instances/{year}/{sem}/{id}"})
-	    public ResponseEntity<?> getCoursesById(@PathVariable int year, int sem, int id) {
+	    public ResponseEntity<?> getCoursesById(@PathVariable int year,@PathVariable int sem,@PathVariable int id) {
 			JSONObject requestData = new JSONObject();
 			requestData.put("year", year);
 			requestData.put("sem", sem);
@@ -58,7 +57,7 @@ public class InstanceController {
 	    }
 
 	    @DeleteMapping({"/instances/{year}/{sem}/{id}"})
-	    public ResponseEntity<String> deleteCoursesById(@PathVariable  int year, int sem, int id){
+	    public ResponseEntity<String> deleteCoursesById(@PathVariable  int year,@PathVariable int sem,@PathVariable int id){
 	    	
 			JSONObject requestData = new JSONObject();
 			requestData.put("year", year);

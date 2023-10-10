@@ -42,11 +42,28 @@ public class InstanceService {
 	public JSONObject getYearSemSrv(JSONObject requestData) {
 		int year = requestData.getInt("year");
 		int sem = requestData.getInt("sem");
-		List<InstanceModel> courseInstance = new ArrayList<InstanceModel>();
+
+		List <InstanceModel> instances = new ArrayList<InstanceModel>();
 
 		try {
-			courseInstance = instanceRepository.getYearSemDao(year, sem);
-			responseJson.put("List", courseInstance);
+			instances = instanceRepository.getYearSemDao(year, sem);
+
+			if(instances == null){
+				responseJson.put("Error", String.format("Course not found with ID: %d, %d", year, sem));
+			}
+
+			JSONArray instArray = new JSONArray();
+
+			for(InstanceModel inst : instances ){
+
+			JSONObject instJson = new JSONObject();
+			instJson.put("courseId",inst.getCourseId());
+			instJson.put("sem",inst.getCourseSemester());
+			instJson.put("year",inst.getCourseYear());
+			instJson.put("instId",inst.getInstanceId());
+			instArray.put(instJson);
+		}
+			responseJson.put("Data", instArray);
 		} catch (Exception e) {
 			responseJson.putOpt("Error", e);
 		}
@@ -62,7 +79,21 @@ public class InstanceService {
 
 		try {
 			instance = instanceRepository.getYearSemIdDao(year, sem, id);
-			responseJson.put("Details", instance);
+
+			if (instance == null) {
+				responseJson.put("Error", String.format("Course not found with ID: %d, %d, %d", year, sem, id) );
+					return responseJson;
+
+			}
+
+			JSONObject instJson = new JSONObject();
+			instJson.put("year",instance.getCourseYear());
+			instJson.put("sem",instance.getCourseSemester());
+			instJson.put("courseId",instance.getCourseId());
+			instJson.put("instance",instance.getCourseId());
+
+
+			responseJson.put("Details", instJson);
 		} catch (Exception e) {
 			responseJson.putOpt("Error", e);
 		}
