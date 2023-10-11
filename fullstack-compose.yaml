@@ -1,0 +1,39 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: CourseDetail
+    networks:
+      - custom-network
+  backend:
+    image: vishnuve/iitb-demo-app-be
+    container_name: spring-be
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/CourseDetail'
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_SQL_INIT_MODE: always
+    restart: on-failure
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    networks:
+      - custom-network
+  frontend:
+    image: vishnuve/iitb-demo-app-fe
+    container_name: react-fe
+    ports:
+      - '3000:3000'
+    networks:
+      - custom-network
+networks:
+  custom-network:
+    driver: bridge
