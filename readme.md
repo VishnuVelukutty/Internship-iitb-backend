@@ -1,0 +1,1 @@
+### Note while using docker for using full stack the MYSQL server is slow to start and prevents backend to server to connect to it and fail intitally (since it is dependent on it). The backend image is set to retry on failure and will work after 4-5 retry i.e as soon as the MYSQL server is up and running 
