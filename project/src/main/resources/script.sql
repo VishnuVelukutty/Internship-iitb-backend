@@ -1,4 +1,4 @@
-CREATE DATABSE CourseDetail;
+CREATE DATABASE IF NOT EXISTS CourseDetail;
 USE CourseDetail;
 
 CREATE TABLE `course_list` (
@@ -10,10 +10,10 @@ CREATE TABLE `course_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `course_instance` (
-    `instance_id` INT AUTO_INCREMENT NOT NULL,
-    `course_id` INT NOT NULL,
-    `course_year` INT NOT NULL,
-    `course_semester` INT NOT NULL,
-    PRIMARY KEY (`instance_id`),
-    FOREIGN KEY (`course_id`) REFERENCES `course_list`(`course_id`)
+  `instance_id` INT AUTO_INCREMENT NOT NULL,
+  `course_id` INT NOT NULL,
+  `course_year` INT NOT NULL,
+  `course_semester` INT NOT NULL,
+  PRIMARY KEY (`instance_id`),
+  FOREIGN KEY (`course_id`) REFERENCES `course_list`(`course_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
