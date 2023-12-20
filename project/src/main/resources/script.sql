@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS CourseDetail;
 USE CourseDetail;
 
-CREATE TABLE `course_list` (
+CREATE TABLE IF NOT EXISTS `course_list` (
   `course_id` INT AUTO_INCREMENT NOT NULL,
   `course_code` varchar(255) NOT NULL,
   `course_desc` varchar(255) DEFAULT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE `course_list` (
   PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `course_instance` (
+CREATE TABLE IF NOT EXISTS `course_instance` (
   `instance_id` INT AUTO_INCREMENT NOT NULL,
   `course_id` INT NOT NULL,
   `course_year` INT NOT NULL,
