@@ -43,10 +43,12 @@ public class InstanceRepository {
 		return query.uniqueResult();
 	}
 
+
+	@Transactional
 	public void deleteYearSemIdDao(int year, int sem, int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Query<InstanceModel> query = currentSession.createQuery(
-				"DELETE FROM InstanceModel WHERE courseYear = :year AND courseSemester = :sem AND instanceId = :id", InstanceModel.class);
+				"FROM InstanceModel WHERE courseYear = :year AND courseSemester = :sem AND instanceId = :id", InstanceModel.class);
 		query.setParameter("year", year);
 		query.setParameter("sem", sem);
 		query.setParameter("id", id);

@@ -1,0 +1,132 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Instances",
+    "dateExported": "2023-12-20T17:40:57.008Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "14497def-db67-47a4-b204-4342c9b4b092",
+            "colId": "8fe557bc-60e5-42f2-98e9-9606d0c8713d",
+            "containerId": "",
+            "name": "localhost:8080/api/instances/{year}/{sem}/{id}",
+            "url": "localhost:8080/api/instances/{year}/{sem}/{id}",
+            "method": "DELETE",
+            "sortNum": 10000,
+            "created": "2023-12-20T17:35:35.366Z",
+            "modified": "2023-12-20T17:35:35.366Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "year",
+                    "value": "2023",
+                    "isPath": true
+                },
+                {
+                    "name": "sem",
+                    "value": "1",
+                    "isPath": true
+                },
+                {
+                    "name": "id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "ef5f7958-9f03-471f-b53c-279f67adc06d",
+            "colId": "8fe557bc-60e5-42f2-98e9-9606d0c8713d",
+            "containerId": "",
+            "name": "localhost:8080/api/instances/{year}/{sem}/{id}",
+            "url": "localhost:8080/api/instances/{year}/{sem}",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-12-20T17:35:48.150Z",
+            "modified": "2023-12-20T17:35:48.150Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "year",
+                    "value": "2022",
+                    "isPath": true
+                },
+                {
+                    "name": "sem",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ec4a24b6-a564-418c-bfa0-55656733be51",
+            "colId": "8fe557bc-60e5-42f2-98e9-9606d0c8713d",
+            "containerId": "",
+            "name": "localhost:8080/api/instances",
+            "url": "localhost:8080/api/instances",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-12-20T17:36:44.296Z",
+            "modified": "2023-12-20T17:36:44.296Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "81d7171c-b4f7-4d87-8f2b-5bcb0a71c603",
+            "colId": "8fe557bc-60e5-42f2-98e9-9606d0c8713d",
+            "containerId": "",
+            "name": "localhost:8080/api/instances",
+            "url": "localhost:8080/api/instances",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-12-20T17:39:57.671Z",
+            "modified": "2023-12-20T17:39:57.671Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\"year\":2022,\n\"sem\" : 1,\n\"courseId\" :1\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d8a865e3-1c44-4217-a73d-90978bd65675",
+            "colId": "8fe557bc-60e5-42f2-98e9-9606d0c8713d",
+            "containerId": "",
+            "name": "localhost:8080/api/instances/{year}/{sem}/{id}",
+            "url": "localhost:8080/api/instances/{year}/{sem}/{id}",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-12-20T17:40:52.062Z",
+            "modified": "2023-12-20T17:40:52.062Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "year",
+                    "value": "",
+                    "isPath": true
+                },
+                {
+                    "name": "sem",
+                    "value": "",
+                    "isPath": true
+                },
+                {
+                    "name": "id",
+                    "value": "",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        }
+    ]
+}

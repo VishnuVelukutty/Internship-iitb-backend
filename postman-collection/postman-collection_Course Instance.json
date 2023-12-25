@@ -1,0 +1,103 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Course Instance",
+    "dateExported": "2023-12-20T10:58:01.477Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "056b50ac-6bed-4554-a6f4-213899e5f04d",
+            "colId": "aba6cdd7-7b58-4274-bcfd-ec295d1069c3",
+            "containerId": "",
+            "name": "http://localhost:8080/api/courses/{id}",
+            "url": "http://localhost:8080/api/courses/{id}",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-12-20T10:57:13.684Z",
+            "modified": "2023-12-20T10:57:13.684Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"CourseCode\"  : \"CS 101\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb2a18d0-bba2-42fb-870e-a47746e8f0db",
+            "colId": "aba6cdd7-7b58-4274-bcfd-ec295d1069c3",
+            "containerId": "",
+            "name": "http://localhost:8080/api/courses",
+            "url": "http://localhost:8080/api/courses",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-12-20T10:57:33.980Z",
+            "modified": "2023-12-20T10:57:33.980Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\"CourseTitle\"  : \"CS Web-3\",\n  \"CourseCode\"  : \"CS 101\",\n\"CourseDesc\" : \"Blockchain development\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a66a3c79-6112-4e8e-a7f9-2821cb9c24f1",
+            "colId": "aba6cdd7-7b58-4274-bcfd-ec295d1069c3",
+            "containerId": "",
+            "name": "http://localhost:8080/api/courses/{id}",
+            "url": "http://localhost:8080/api/courses/{id}",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2023-12-20T10:57:45.596Z",
+            "modified": "2023-12-20T10:57:45.596Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"CourseCode\"  : \"CS 101\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "353468ae-7d7e-4614-92e0-1b623ef98ac5",
+            "colId": "aba6cdd7-7b58-4274-bcfd-ec295d1069c3",
+            "containerId": "",
+            "name": "http://localhost:8080/api/courses/{id}",
+            "url": "http://localhost:8080/api/courses/{id}",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-12-20T10:57:54.308Z",
+            "modified": "2023-12-20T10:57:54.308Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"CourseCode\"  : \"CS 101\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

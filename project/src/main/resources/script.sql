@@ -17,3 +17,11 @@ CREATE TABLE IF NOT EXISTS `course_instance` (
   PRIMARY KEY (`instance_id`),
   FOREIGN KEY (`course_id`) REFERENCES `course_list`(`course_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `login_details` (
+  `login_id` INT AUTO_INCREMENT NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_pass`varchar(255) NOT NULL,
+  `user_type` CHAR(1) NOT NULL,
+  PRIMARY KEY (`login_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

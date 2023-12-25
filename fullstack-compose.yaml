@@ -1,0 +1,50 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: CourseDetail
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    ports:
+      - '3308:3306'
+    networks:
+      - custom-network
+  backend:
+    image: vishnuve/backend:demo
+    container_name: spring-be
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/CourseDetail'
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_SQL_INIT_MODE: always
+      spring.sql.init.data-locations: classpath:script.sql
+    restart: on-failure
+    ports:
+      - '8080:8080'
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - custom-network
+  frontend:
+    image: vishnuve/frontend:demo
+    container_name: react-fe
+    ports:
+      - '3000:3000'
+    networks:
+      - custom-network
+    environment:
+      - REACT_APP_API_URL=http://backend:8080/api
+networks:
+  custom-network:
+    driver: bridge
