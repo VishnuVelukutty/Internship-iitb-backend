@@ -49,7 +49,7 @@ public class InstanceService {
 			instances = instanceRepository.getYearSemDao(year, sem);
 
 			if(instances == null){
-				responseJson.put("Error", String.format("Course not found with ID: %d, %d", year, sem));
+				responseJson.put("Info", String.format("Course not found with ID: %d, %d", year, sem));
 			}
 
 			JSONArray instArray = new JSONArray();
@@ -81,7 +81,7 @@ public class InstanceService {
 			instance = instanceRepository.getYearSemIdDao(year, sem, id);
 
 			if (instance == null) {
-				responseJson.put("Error", String.format("Course not found with ID: %d, %d, %d", year, sem, id) );
+				responseJson.put("Info", String.format("Course not found with ID: %d, %d, %d", year, sem, id) );
 					return responseJson;
 
 			}
@@ -106,8 +106,13 @@ public class InstanceService {
 		int id = requestData.getInt("id");
 
 		try {
-			instanceRepository.deleteYearSemIdDao(year, sem, id);
-			responseJson.put("Status", "Success");
+			int statCode = instanceRepository.deleteYearSemIdDao(year, sem, id);
+			if(statCode == 1){ 
+				responseJson.put("Status", "Success");
+			}else{
+				responseJson.put("Info", "No record Found");
+			}
+
 		} catch (Exception e) {
 			responseJson.putOpt("Error", e);
 		}

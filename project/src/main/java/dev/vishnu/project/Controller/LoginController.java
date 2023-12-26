@@ -23,7 +23,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     
-    @PostMapping({"/Login"})
+    @PostMapping({"/login"})
     public ResponseEntity<?> loginCntrl(@RequestBody String requestData){
         JSONObject requestJson = new JSONObject(requestData);
         JSONObject responseJson = loginService.login(requestJson);

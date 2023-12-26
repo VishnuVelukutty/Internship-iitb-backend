@@ -73,8 +73,7 @@ public class CoursesService {
 			courseDetails = coursesRepository.getCoursesByIdDao(courseId);
 
 			if (courseDetails == null) {
-				responseJson.put("Error", "Course not found with ID: " + courseId);
-				return responseJson;
+				responseJson.put("Info", "Course not found with ID: " + courseId);
 			}
 
 			JSONObject courseJson = new JSONObject();

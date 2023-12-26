@@ -45,7 +45,7 @@ public class InstanceRepository {
 
 
 	@Transactional
-	public void deleteYearSemIdDao(int year, int sem, int id) {
+	public int deleteYearSemIdDao(int year, int sem, int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Query<InstanceModel> query = currentSession.createQuery(
 				"FROM InstanceModel WHERE courseYear = :year AND courseSemester = :sem AND instanceId = :id", InstanceModel.class);
@@ -56,6 +56,9 @@ public class InstanceRepository {
 
 		if (course != null) {
 			currentSession.remove(course);
+			return 1;
+		}else{
+			return 0;
 		}
 	}
 
