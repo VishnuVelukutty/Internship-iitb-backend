@@ -1,6 +1,5 @@
 package dev.vishnu.project.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -16,38 +15,44 @@ public class LoginService {
     @Autowired
     private LoginRepository loginRepository;
 
-    JSONObject responseJson = new JSONObject();
-
+    
     public JSONObject login(JSONObject requestData) {
+        JSONObject responseJson = new JSONObject();
 
         String userName = requestData.getString("userName");
         String userPass = requestData.getString("userPass");
-        System.out.println("userName >>>>>>>>>>>." + userName);
+        System.out.println("userName from FE >>>>>>>>>>>" + userName);
+        System.out.println("userPass from FE >>>>>>>>>>>" + userPass);
 
-        List<LoginModel> doesExist = new ArrayList<LoginModel>();
+        List<LoginModel> doesExist;
+
 
         try {
             doesExist = loginRepository.verifyLogin(userName, userPass);
-
-         if (!doesExist.isEmpty()){
-                String uName = "";
-                String uPass = "";
-                String type = "";
+            System.out.println("Does Exist ? shud be empty if nothing or incorrect values provided >>>>>" + doesExist);
+    
+            if (!doesExist.isEmpty()) {
+                boolean credentialsMatch = false;
+    
                 for (LoginModel loginModel : doesExist) {
-                    uName = loginModel.getUserName();
-                    uPass = loginModel.getUserPass();
-                    type = loginModel.getUserType();
-                }
-
-                 if (uName.equals(userName) && uPass.equals(userPass)) {
-                        responseJson.put("Success", String.format("type" + type));
-                    } else if(!uName.equals(userName) || !uPass.equals(userPass)) {
-                        responseJson.put("Info", "Invalid Credentials");
+                    if (userName.equals(loginModel.getUserName()) && userPass.equals(loginModel.getUserPass())) {
+                        responseJson.put("Success", String.format("type %s", loginModel.getUserType()));
+                        credentialsMatch = true;
+                        break; // Exit the loop once a match is found
                     }
+                }
+    
+                if (!credentialsMatch) {
+                    responseJson.putOpt("Info", "Invalid Credentials");
+                    System.out.println("SHOULD PRINT IF ONE INCORRECT VALUES");
+                }
+            } else {
+                responseJson.putOpt("Info", "No User Found");
+                System.out.println("SHOULD PRINT IF ALL INCORRECT VALUES");
             }
-
+    
         } catch (Exception e) {
-            responseJson.putOpt("Error", e);
+            responseJson.putOpt("Error", e.getMessage());
         }
         return responseJson;
     }

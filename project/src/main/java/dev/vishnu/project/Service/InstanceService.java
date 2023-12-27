@@ -17,9 +17,10 @@ public class InstanceService {
 	@Autowired
 	private InstanceRepository instanceRepository;
 
-	JSONObject responseJson = new JSONObject();
 
 	public JSONObject addInstanceSrv(JSONObject requestData) {
+
+			JSONObject responseJson = new JSONObject();
 
 		int year = requestData.getInt("year");
 		int sem = requestData.getInt("sem");
@@ -40,6 +41,8 @@ public class InstanceService {
 	}
 
 	public JSONObject getYearSemSrv(JSONObject requestData) {
+			JSONObject responseJson = new JSONObject();
+
 		int year = requestData.getInt("year");
 		int sem = requestData.getInt("sem");
 
@@ -72,6 +75,8 @@ public class InstanceService {
 	}
 
 	public JSONObject getYearSemIdSrv(JSONObject requestData) {
+			JSONObject responseJson = new JSONObject();
+
 		int year = requestData.getInt("year");
 		int sem = requestData.getInt("sem");
 		int id = requestData.getInt("id");
@@ -101,6 +106,8 @@ public class InstanceService {
 	}
 
 	public JSONObject deleteYearSemIdSrv(JSONObject requestData) {
+			JSONObject responseJson = new JSONObject();
+
 		int year = requestData.getInt("year");
 		int sem = requestData.getInt("sem");
 		int id = requestData.getInt("id");
@@ -121,6 +128,8 @@ public class InstanceService {
 	}
 
 	public JSONObject getInstanceSrv() {
+			JSONObject responseJson = new JSONObject();
+
 		List<InstanceModel> instances = new ArrayList<InstanceModel>();
 
 		try {

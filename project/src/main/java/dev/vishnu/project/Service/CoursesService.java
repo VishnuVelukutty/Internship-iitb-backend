@@ -17,9 +17,9 @@ public class CoursesService {
 	@Autowired
 	private CoursesRepository coursesRepository;
 
-	JSONObject responseJson = new JSONObject();
 
 	public JSONObject addCoursesSrv(JSONObject requestData) {
+	JSONObject responseJson = new JSONObject();
 
 		String courseCode = requestData.getString("CourseCode");
 		String courseTitle = requestData.getString("CourseTitle");
@@ -41,6 +41,8 @@ public class CoursesService {
 	}
 
 	public JSONObject getCoursesSrv() {
+			JSONObject responseJson = new JSONObject();
+
 		List<CoursesModel> courseDetails = new ArrayList<CoursesModel>();
 
 		try {
@@ -66,6 +68,8 @@ public class CoursesService {
 	}
 
 	public JSONObject getCoursesByIdSrv(JSONObject requestData) {
+			JSONObject responseJson = new JSONObject();
+
 		int courseId = requestData.getInt("CourseId");
 
 		CoursesModel courseDetails = new CoursesModel();
@@ -89,6 +93,8 @@ public class CoursesService {
 	}
 
 	public JSONObject deleteCoursesById(JSONObject requestData) {
+			JSONObject responseJson = new JSONObject();
+
 		int courseId = requestData.getInt("CourseId");
 		try {
 			coursesRepository.deleteByIdDao(courseId);
