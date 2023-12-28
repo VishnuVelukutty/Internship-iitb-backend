@@ -30,7 +30,7 @@ public class LoginController {
         return new ResponseEntity<> (responseJson.toString(),HttpStatus.OK);
     }
 
- @PostMapping({"/Register"})
+ @PostMapping({"/register"})
     public ResponseEntity<?> registerCntrl(@RequestBody String requestData) {
         JSONObject requestJson = new JSONObject(requestData);
         JSONObject responseJson = loginService.register(requestJson);

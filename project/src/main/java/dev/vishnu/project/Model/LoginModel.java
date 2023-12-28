@@ -53,8 +53,8 @@ public class LoginModel {
         return userType;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setUserType(String userType2) {
+        this.userType = userType2;
     }
 
 }

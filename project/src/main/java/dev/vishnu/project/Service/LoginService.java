@@ -58,8 +58,30 @@ public class LoginService {
     }
 
     public JSONObject register(JSONObject requestData) {
+                JSONObject responseJson = new JSONObject();
+                String userName = requestData.getString("userName");
+                String userPass = requestData.getString("userPass");
+                String userType = requestData.getString("userType");
+                String userRePass = requestData.getString("userRePass");
 
-        return null;
+                if(!userPass.equals(userRePass)){
+                    responseJson.putOpt("Mismatch", "Password Mismatch");
+                }else{
+                LoginModel login = new LoginModel();
+                login.setUserName(userName);
+                login.setUserPass(userPass);
+                login.setUserType(userType);
+
+                try {
+                    responseJson.put("Status", "Success");
+                    
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    responseJson.putOpt("Error", e);
+                }
+            }
+
+        return responseJson;
     }
 
 }
