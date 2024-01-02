@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import dev.vishnu.project.Model.LoginModel;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 @Repository
 public class LoginRepository {
@@ -25,6 +26,33 @@ public class LoginRepository {
         List<LoginModel> verifyList = verify.getResultList();
 
         return verifyList;
+    }
+
+    @Transactional
+    public String registerUser(String userName, String userPass, String userType) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query<LoginModel> verify = currentSession
+                .createQuery("FROM LoginModel WHERE userName =:userName AND userPass =:userPass AND userType =:userType",
+                        LoginModel.class);
+        verify.setParameter("userName", userName);
+        verify.setParameter("userPass", userPass);
+        verify.setParameter("userType", userType);
+        List<LoginModel> verifyList = verify.getResultList();
+        System.out.println("verify List >>>>"+verifyList);
+
+        if (!verifyList.isEmpty()) {
+            System.out.println("Here");
+            return "Exists";
+        } else {
+
+            LoginModel register = new LoginModel();
+            register.setUserName(userName);
+            register.setUserPass(userPass);
+            register.setUserType(userType);
+
+            currentSession.persist(register);
+            return "Success";
+        }
     }
 
 }

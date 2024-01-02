@@ -9,8 +9,8 @@
             "_id": "056b50ac-6bed-4554-a6f4-213899e5f04d",
             "colId": "aba6cdd7-7b58-4274-bcfd-ec295d1069c3",
             "containerId": "",
-            "name": "http://localhost:8080/api/courses/{id}",
-            "url": "http://localhost:8080/api/courses/{id}",
+            "name": "http://localhost:8080/api/courses",
+            "url": "http://localhost:8080/api/courses",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-12-20T10:57:13.684Z",
@@ -25,7 +25,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"CourseCode\"  : \"CS 101\"\n}",
+                "raw": "{\n \n \n}",
                 "form": []
             },
             "tests": []
