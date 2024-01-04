@@ -30,7 +30,7 @@ public class LoginService {
 
                 for (LoginModel loginModel : doesExist) {
                     if (userName.equals(loginModel.getUserName()) && userPass.equals(loginModel.getUserPass())) {
-                        responseJson.put("Success", String.format("type %s", loginModel.getUserType()));
+                        responseJson.put("Success", String.format("%s", loginModel.getUserType()));
                         credentialsMatch = true;
                         break; // Exit the loop once a match is found
                     }
